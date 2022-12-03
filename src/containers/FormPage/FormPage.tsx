@@ -23,8 +23,8 @@ function FormPage() {
         !regex.test(form[`email`].value) ? tempErrors.email = true : tempErrors.email = false
         form[`number`].value.length !== 9 ? tempErrors.number = true : tempErrors.number = false
         !form[`check`].checked ? tempErrors.checkbox = true : tempErrors.checkbox = false
-        if (Object.values(tempErrors).includes(true)) return
         setErrors(tempErrors)
+        if (Object.values(tempErrors).includes(true)) return
         axios.post("https://example/.", star_wars_data).then((response) => {
             console.log(response);
         }).catch((error) => {
