@@ -1,10 +1,10 @@
 1. Clone the repo
 ```sh
-   git clone https://github.com/Dashox748/just-news.git
+   git clone https://github.com/Dashox748/fetch-form-app-task
    ```
 2. Move to direction
 ```sh
-   cd just-news
+   cd fetch-form-app-task
    ```
 3. Install
 ```sh
