@@ -28,6 +28,17 @@ export type idParams = {
     id: string
 }
 
+export interface LoginForm {
+login:string;
+password:string;
+email:string;
+
+number:number;
+
+//termsCheckbox
+check:boolean;
+}
+
 export interface errorParams {
     login:boolean
     password:boolean

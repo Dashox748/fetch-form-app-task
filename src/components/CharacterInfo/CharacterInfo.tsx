@@ -1,7 +1,7 @@
 import "./characterInfo.css"
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
-import {metoda} from "../../utils/fetch";
+import {fetchCharacterData} from "../../utils/fetch";
 import {fetchChar, idParams} from "../../utils/interfaces";
 import Fav from "./fav.png"
 
@@ -11,7 +11,7 @@ function CharacterInfo() {
 
     useEffect(() => {
         (async () => {
-            setCharacterInfo(await metoda(id !== undefined ? id : "1"))
+            if (id) setCharacterInfo(await fetchCharacterData(id))
         })();
     }, [id])
 

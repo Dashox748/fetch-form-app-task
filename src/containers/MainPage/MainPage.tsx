@@ -10,7 +10,7 @@ function MainPage() {
     const {id} = useParams<idParams>();
 
     useEffect(() => {
-        setPeopleId(id !== undefined ? id : "1")
+        if (id) setPeopleId(id)
     }, [id])
     return (
         <div className="main__container">

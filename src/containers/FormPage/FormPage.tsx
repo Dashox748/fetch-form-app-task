@@ -1,9 +1,9 @@
 import "./formPage.css"
-import {FormEvent, useEffect, useRef, useState} from "react";
+import {FormEvent, MutableRefObject, useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import {metoda} from "../../utils/fetch";
-import {errorParams, idParams, starWarsData} from "../../utils/interfaces";
+import {fetchCharacterData} from "../../utils/fetch";
+import {errorParams, idParams, LoginForm, starWarsData} from "../../utils/interfaces";
 
 
 function FormPage() {
@@ -12,11 +12,11 @@ function FormPage() {
     const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Backspace"]
     const [star_wars_data, set_Star_Wars_Data] = useState<starWarsData>()
     const [errors, setErrors] = useState<errorParams>({} as errorParams)
-    const ref = useRef() as any;
+    const formRef = useRef() as MutableRefObject<HTMLFormElement>;
 
     const onSubmit = (event: FormEvent) => {
         event.preventDefault()
-        const form = ref.current
+        const form = formRef.current
         let tempErrors: errorParams = {} as errorParams
         form[`login`].value.length === 0 ? tempErrors.login = true : tempErrors.login = false
         form[`password`].value.length <= 4 ? tempErrors.password = true : tempErrors.password = false
@@ -33,7 +33,7 @@ function FormPage() {
     }
     useEffect(() => {
         (async () => {
-            const data = await metoda(id)
+            const data = await fetchCharacterData(id)
             const star_wars_data = {
                 name: data.name,
                 created: data.created,
@@ -47,7 +47,7 @@ function FormPage() {
             <div className="form__container-content">
                 <h1 className="register-form-title">FORMULARZ REJESTRACYJNY</h1>
                 <div className="border-title"></div>
-                <form onSubmit={onSubmit} className="form" ref={ref}>
+                <form onSubmit={onSubmit} className="form" ref={formRef}>
                     <label className="label-main">
                         Login:
                         <input type="text" name="login"/>
