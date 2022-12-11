@@ -13,7 +13,7 @@
 .form__container-content {
   display: flex;
   flex-direction: column;
-  margin: 0 174px 0 203px;
+  margin: 0 clamp(10px, 15vw, 170px);
 }
 
 .register-form-title {
